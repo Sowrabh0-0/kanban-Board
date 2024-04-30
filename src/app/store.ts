@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import userReducer from '../../features/user/userSlice';
-import taskReducer from '../features/tasks/taskSlice';
-import labelReducer from '../features/labels/labelSlice';
-import filterReducer from '../features/filters/filterSlice';
+import userReducer from '../app/features/user/userSlice';
+import taskReducer from '../app/features/tasks/taskSlice';
+import labelReducer from '../app/features/labels/labelSlice';
+import filterReducer from '../app/features/filters/filterSlice';
 
 export const store = configureStore({
   reducer: {

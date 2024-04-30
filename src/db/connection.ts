@@ -6,11 +6,6 @@ if (!MONGODB_URI) {
   throw new Error('Please define the MONGODB_URI environment variable inside .env.local');
 }
 
-/**
- * Global is used here to maintain a cached connection across hot reloads
- * in development. This prevents connections growing exponentially
- * during API Route usage.
- */
 interface CustomNodeJSGlobal extends NodeJS.Global {
   mongoose: {
     conn: typeof mongoose | null,
@@ -31,12 +26,11 @@ async function dbConnect(): Promise<typeof mongoose> {
 
   if (!global.mongoose.promise) {
     const opts: mongoose.ConnectOptions = {
-      bufferCommands: false,
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+      bufferCommands: false  
     };
 
-    global.mongoose.promise = mongoose.connect(MONGODB_URI, opts).then(mongoose => {
+
+    global.mongoose.promise = mongoose.connect(MONGODB_URI!, opts).then(mongoose => {
       return mongoose;
     });
   }
